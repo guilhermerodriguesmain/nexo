@@ -1,0 +1,35 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ambientes virtuais
+env/
+venv/
+.venv/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Arquivos gerados pelo Django
+media/
+staticfiles/
+
+# Variáveis de ambiente
+.env
+.env.*
+!.env.example
+
+# Ferramentas e sistema operacional
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Cobertura e testes
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
