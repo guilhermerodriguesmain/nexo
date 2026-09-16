@@ -17,7 +17,6 @@ class Movimentacao(ABC):
     self.categoria = categoria
 
     @abstractmethod
-
     def impacto(self):
         pass
 
