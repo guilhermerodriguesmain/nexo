@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+
 from datetime import date
 from .movimentacao import Movimentacao
 
@@ -9,7 +9,7 @@ class Saida(Movimentacao):
         self,
         descricao,
         valor,
-        data,
+        data_registro,
         conta,
         categoria,
         num_parcelas = 1,
@@ -18,7 +18,7 @@ class Saida(Movimentacao):
         super().__init__(
             descricao,
             valor,
-            data,
+            data_registro,
             conta,
             categoria
         )

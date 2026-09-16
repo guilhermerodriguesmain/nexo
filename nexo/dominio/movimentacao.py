@@ -5,14 +5,14 @@ class Movimentacao(ABC):
     def __init__(self,
     descricao,
     valor,
-    data,
+    data_registro,
     conta,
     categoria
     ):
     
     self.descricao = descricao : str
     self.valor = valor
-    self.data = data 
+    self.data_registro = data_registro
     self.conta = conta
     self.categoria = categoria
 
