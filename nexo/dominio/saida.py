@@ -1,6 +1,6 @@
 
 from datetime import date
-from .movimentacao import Movimentacao
+from . movimentacao import Movimentacao
 
 class Saida(Movimentacao):
     #sugestão: adicionar lógica para retornar impacto equivalente a parcela do mes

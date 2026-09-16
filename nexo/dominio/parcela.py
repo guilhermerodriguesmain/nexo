@@ -1,6 +1,6 @@
 
 from datetime import date
-from .saida import Saida
+from . saida import Saida
 
 class Parcela(Saida):
     def __init__(
