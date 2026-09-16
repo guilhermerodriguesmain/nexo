@@ -10,9 +10,9 @@ class Movimentacao(ABC):
     categoria
     ):
     
-    self.descricao = descricao
+    self.descricao = descricao : str
     self.valor = valor
-    self.data = data
+    self.data = data 
     self.conta = conta
     self.categoria = categoria
 
@@ -20,4 +20,4 @@ class Movimentacao(ABC):
 
     def impacto(self):
         pass
-    
+
