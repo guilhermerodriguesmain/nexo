@@ -14,20 +14,23 @@ class Orcamento(ABC):
         self.conta = conta
         self.categoria = categoria
         self.descricao = descricao
-        self.periodicidade = periodicidade.Lower()
+        self.periodicidade = periodicidade.lower()
+    
+    if self.periodicidade not in {"mensal", "anual"}:
+    raise ValueError("Periodicidade inválida")
 
     @property
     @abstractmethod
-    def valor():
+    def valor(self):
         pass
 
     def calculo_mensal(self):
-        if self.periodicidade == "anual"
+        if self.periodicidade == "anual":
             return self.valor / 12
         return self.valor
 
     
     def calculo_anual(self):
-        if self.periodicidade == "mensal"
+        if self.periodicidade == "mensal":
             return self.valor * 12
-        retrn self.valor
+        return self.valor

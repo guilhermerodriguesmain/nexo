@@ -10,13 +10,13 @@ class LimiteDeGasto(orc):
         periodicidade,
         valor_limite
     ):
-        super()__init__(
+        super().__init__(
             data_registro,
             conta,
             categoria,
             descricao,
             periodicidade
-        ):
+        )
 
        self.valor_limite = valor_limite
 

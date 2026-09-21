@@ -24,9 +24,8 @@ class Acumulo(Orcamento):
     def valor(self):
         return self.valor_meta
 
-    def calculo_mensal():
+    def calculo_mensal(self):
         return super().calculo_mensal()
 
-    def calculo_anual():
+    def calculo_anual(self):
         return super().calculo_anual()
-        
