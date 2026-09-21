@@ -14,7 +14,7 @@ class Orcamento(ABC):
         self.conta = conta
         self.categoria = categoria
         self.descricao = descricao
-        self.periodicidade = periodicidade
+        self.periodicidade = periodicidade.Lower()
 
     @property
     @abstractmethod
@@ -22,8 +22,12 @@ class Orcamento(ABC):
         pass
 
     def calculo_mensal(self):
-        return self.valor / 12
+        if self.periodicidade == "anual"
+            return self.valor / 12
+        return self.valor
 
     
     def calculo_anual(self):
-        return self.valor * 12
+        if self.periodicidade == "mensal"
+            return self.valor * 12
+        retrn self.valor
