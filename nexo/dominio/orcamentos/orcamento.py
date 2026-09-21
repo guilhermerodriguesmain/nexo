@@ -16,6 +16,11 @@ class Orcamento(ABC):
         self.descricao = descricao
         self.periodicidade = periodicidade
 
+    @property
+    @abstractmethod
+    def valor():
+        pass
+
     @abstractmethod
     def calculo_mensal(self):
         pass
