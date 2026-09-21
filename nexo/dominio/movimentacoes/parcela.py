@@ -1,6 +1,6 @@
 
 from datetime import date
-from . saida import Saida
+from .saida import Saida
 
 class Parcela(Saida):
     def __init__(
@@ -14,10 +14,11 @@ class Parcela(Saida):
         descricao
     ):
         super().__init__(
-            data_registro,
-            conta,
-            categoria,
-            descricao
+            data_registro = data_registro,
+            conta = conta,
+            valor = valor,
+            categoria = categoria,
+            descricao = descricao
         )
         
         self.numero = numero

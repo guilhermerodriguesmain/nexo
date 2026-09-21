@@ -13,7 +13,7 @@ class Saida(Movimentacao):
         conta,
         categoria,
         num_parcelas = 1,
-        valor_parcela = none
+        valor_parcela = None
     ):
         super().__init__(
             descricao,
@@ -23,7 +23,7 @@ class Saida(Movimentacao):
             categoria
         )
 
-        self.num_parcelas = num_parcela
+        self.num_parcelas = num_parcelas
         self.valor_parcela = valor_parcela
 
         if (valor_parcela is None) and (num_parcelas == 1):

@@ -10,11 +10,11 @@ class Movimentacao(ABC):
     categoria
     ):
     
-    self.descricao = descricao : str
-    self.valor = valor
-    self.data_registro = data_registro
-    self.conta = conta
-    self.categoria = categoria
+        self.descricao = descricao 
+        self.valor = valor
+        self.data_registro = data_registro
+        self.conta = conta
+        self.categoria = categoria
 
     @abstractmethod
     def impacto(self):
