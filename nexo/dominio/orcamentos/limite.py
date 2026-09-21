@@ -1,6 +1,6 @@
 from .orcamento import Orcamento as orc
 
-class Limite(orc):
+class LimiteDeGasto(orc):
     def __init__(
         self,
         data_registro,
@@ -24,9 +24,8 @@ class Limite(orc):
     def valor(self):
         return self.valor_limite
     
-    def calculo_mensal():
-        
-        pass
+    def calculo_mensal(self):
+        return super().calculo_mensal()
 
-    def calculo_anual():
-        pass
+    def calculo_anual(self):
+        return super().calculo_anual()

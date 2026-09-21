@@ -21,10 +21,9 @@ class Orcamento(ABC):
     def valor():
         pass
 
-    @abstractmethod
     def calculo_mensal(self):
-        pass
+        return self.valor / 12
 
-    @abstractmethod
+    
     def calculo_anual(self):
-        pass
+        return self.valor * 12
