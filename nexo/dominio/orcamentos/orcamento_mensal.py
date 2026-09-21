@@ -1,4 +1,3 @@
-# nexo/dominio/orcamentos/orcamento_mensal.py
 
 class OrcamentoMensal:
 
