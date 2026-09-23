@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Movimentações</title>
+</head>
+<body>
+    <h1>Movimentações financeiras</h1>
+
+    <ul>
+        {% for movimentacao in movimentacoes %}
+            <li>
+                <strong>{{ movimentacao.descricao }}</strong>
+                —
+                R$ {{ movimentacao.valor }}
+                —
+                {{ movimentacao.categoria }}
+                —
+                {{ movimentacao.data_registro }}
+            </li>
+        {% empty %}
+            <li>Nenhuma movimentação cadastrada.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
