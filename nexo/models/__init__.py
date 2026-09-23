@@ -1,2 +1,2 @@
-from .movimentacao import Movimentacao, Entrada, Saida, Parcela
-from .orcamento import Orcamento, LimiteDeGasto, Meta
+from .models_movimentacoes import Movimentacao, Entrada, Saida, Parcela
+from .models_orcamentos import Orcamento, LimiteDeGasto, Meta
