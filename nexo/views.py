@@ -7,8 +7,19 @@ def inicio(request):
     return HttpResponse("funcionou")
 
 def movimentacoes_list(request):
+    termo = request.GET.get("q", "")
+
     entradas = Entrada.objects.all()
     saidas = Saida.objects.all()
+
+    if termo:
+        entradas = entradas.filter(
+            descricao__icontains=termo
+        )
+
+        saidas = saidas.filter(
+            descricao__icontains=termo
+        )
 
     movimentacoes = [
         *entradas,
@@ -29,3 +40,4 @@ def movimentacoes_list(request):
         "lista.html",
         contexto,
     )
+    
