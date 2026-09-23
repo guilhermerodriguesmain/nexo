@@ -13,7 +13,7 @@ class Orcamento(models.Model):
     )
     descricao = models.TextField(
         null = True,
-        Blank = True
+        blank = True
     )
     data_registro = models.DateField()
 
@@ -40,4 +40,3 @@ class Meta(Orcamento):
         max_digits=12,
         decimal_places=2
     )
-    

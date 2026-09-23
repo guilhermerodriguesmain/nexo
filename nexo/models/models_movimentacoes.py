@@ -1,11 +1,11 @@
 from django.db import models
 
 # Create your models here.
-class Movimetacao(models.Model):
+class Movimentacao(models.Model):
     valor = models.DecimalField(
         max_digits= 12, 
-        decimal_place = 2
-        null= False
+        decimal_places = 2,
+        null= False,
         blank = False
     )
     data_registro = models.DateField(
@@ -13,14 +13,14 @@ class Movimetacao(models.Model):
         blank = False
     )
     conta = models.CharField(
-        max_legth= 100,
+        max_length= 100,
         null = False,
         blank = False
     )
     categoria = models.CharField(
         max_length = 200,
         null = False,
-        Blank = False
+        blank = False
     )
     descricao = models.TextField(
         null = True,
@@ -50,4 +50,3 @@ class Parcela(Movimentacao):
     )
     numero = models.PositiveIntegerField()
     data_vencimento = models.DateField()
-    
