@@ -5,7 +5,21 @@
     <title>Movimentações</title>
 </head>
 <body>
+
     <h1>Movimentações financeiras</h1>
+
+    <form method="get">
+        <input
+            type="text"
+            name="q"
+            placeholder="Buscar por descrição"
+            value="{{ request.GET.q }}"
+        >
+
+        <button type="submit">
+            Buscar
+        </button>
+    </form>
 
     <ul>
         {% for movimentacao in movimentacoes %}
@@ -19,8 +33,9 @@
                 {{ movimentacao.data_registro }}
             </li>
         {% empty %}
-            <li>Nenhuma movimentação cadastrada.</li>
+            <li>Nenhuma movimentação encontrada.</li>
         {% endfor %}
     </ul>
+
 </body>
 </html>
