@@ -2,9 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from nexo.models import Entrada, Saida
 
-# Create your views here.
+
 def inicio(request):
     return HttpResponse("funcionou")
+
 
 def movimentacoes_list(request):
     termo = request.GET.get("q", "")
@@ -31,8 +32,17 @@ def movimentacoes_list(request):
         reverse=True,
     )
 
+    descricoes = set()
+
+    for entrada in Entrada.objects.all():
+        descricoes.add(entrada.descricao)
+
+    for saida in Saida.objects.all():
+        descricoes.add(saida.descricao)
+
     contexto = {
         "movimentacoes": movimentacoes,
+        "descricoes": sorted(descricoes),
     }
 
     return render(

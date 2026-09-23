@@ -1,24 +1,40 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>Movimentações</title>
 </head>
+
 <body>
 
     <h1>Movimentações financeiras</h1>
 
     <form method="get">
+
+        <label for="busca">
+            Buscar por descrição:
+        </label>
+
         <input
             type="text"
+            id="busca"
             name="q"
-            placeholder="Buscar por descrição"
+            list="descricoes"
             value="{{ request.GET.q }}"
+            placeholder="Digite uma descrição"
         >
+
+        <datalist id="descricoes">
+            {% for descricao in descricoes %}
+                <option value="{{ descricao }}">
+            {% endfor %}
+        </datalist>
 
         <button type="submit">
             Buscar
         </button>
+
     </form>
 
     <ul>
@@ -33,7 +49,9 @@
                 {{ movimentacao.data_registro }}
             </li>
         {% empty %}
-            <li>Nenhuma movimentação encontrada.</li>
+            <li>
+                Nenhuma movimentação encontrada.
+            </li>
         {% endfor %}
     </ul>
 
