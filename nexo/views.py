@@ -11,6 +11,7 @@ def inicio(request):
 
 def movimentacoes_list(request):
     termo = request.GET.get("q", "")
+    categoria = request.GET.get("categoria", "")
 
     entradas = Entrada.objects.all()
     saidas = Saida.objects.all()
@@ -61,6 +62,7 @@ def movimentacoes_list(request):
     contexto = {
         "movimentacoes": movimentacoes,
         "descricoes": sorted(descricoes),
+        "categorias": sorted(categorias),
     }
 
     return render(
