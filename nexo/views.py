@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from nexo.models import Entrada, Saida
 from nexo.forms import SaidaForm
 from nexo.services.movimentacoes import MovimentacaoService
+from django.db.models import Q
 
 
 def inicio(request):
@@ -16,22 +17,18 @@ def movimentacoes_list(request):
     entradas = Entrada.objects.all()
     saidas = Saida.objects.all()
 
-    if termo:
-        entradas = entradas.filter(
-            descricao__icontains=termo
-        )
+    from django.db.models import Q
 
-        saidas = saidas.filter(
-            descricao__icontains=termo
-        )
-    
-    if categoria: 
-        entradas = entradas.filter( 
-            categoria=categoria 
-        ) 
-        saidas = saidas.filter( 
-            categoria=categoria 
-        )
+    filtros = Q()
+
+    if termo:
+        filtros &= Q(descricao__icontains=termo)
+
+    if categoria:
+        filtros &= Q(categoria=categoria)
+
+    entradas = Entrada.objects.filter(filtros)
+    saidas = Saida.objects.filter(filtros)
 
     movimentacoes = [
         *entradas,
