@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from nexo.models import Entrada, Saida
 from nexo.forms import SaidaForm
+from nexo.services.movimentacoes import MovimentacaoService
 
 
 def inicio(request):
@@ -22,6 +23,14 @@ def movimentacoes_list(request):
         saidas = saidas.filter(
             descricao__icontains=termo
         )
+    
+    if categoria: 
+        entradas = entradas.filter( 
+            categoria=categoria 
+        ) 
+        saidas = saidas.filter( 
+            categoria=categoria 
+        )
 
     movimentacoes = [
         *entradas,
@@ -40,6 +49,14 @@ def movimentacoes_list(request):
 
     for saida in Saida.objects.all():
         descricoes.add(saida.descricao)
+    
+    categorias = set()
+
+    for entrada in Entrada.objects.all():
+        categorias.add(entrada.categoria)
+
+    for saida in Saida.objects.all():
+        categorias.add(saida.categoria)
 
     contexto = {
         "movimentacoes": movimentacoes,
@@ -52,24 +69,27 @@ def movimentacoes_list(request):
         contexto,
     )
 
-def saida_form(request): 
-    if request.method == "POST": 
-        form = SaidaForm(request.POST) 
+def saida_form(request):
 
-        if form.is_valid(): 
-            form.save() 
+    if request.method == "POST":
+        form = SaidaForm(request.POST)
 
-            return redirect("movimentacoes_list") 
+        if form.is_valid():
+            dados = form.cleaned_data
 
-    else: 
-        form = SaidaForm() 
+            MovimentacaoService().registrar_saida(dados)
 
-    contexto = { 
+            return redirect("movimentacoes_list")
+
+    else:
+        form = SaidaForm()
+
+    contexto = {
         "form": form,
-        } 
+    }
 
-    return render( 
-        request, 
-        "saida_form.html", 
-        contexto, 
+    return render(
+        request,
+        "saida_form.html",
+        contexto,
     )

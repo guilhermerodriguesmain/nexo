@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title>Movimentações</title>
@@ -31,8 +31,32 @@
             {% endfor %}
         </datalist>
 
+        <label for="categoria">
+            Categoria:
+        </label>
+
+        <select
+            id="categoria"
+            name="categoria"
+        >
+            <option value="">
+                Todas as categorias
+            </option>
+
+            {% for categoria in categorias %}
+                <option
+                    value="{{ categoria }}"
+                    {% if request.GET.categoria == categoria %}
+                        selected
+                    {% endif %}
+                >
+                    {{ categoria }}
+                </option>
+            {% endfor %}
+        </select>
+
         <button type="submit">
-            Buscar
+            Filtrar
         </button>
 
     </form>
@@ -56,4 +80,5 @@
     </ul>
 
 </body>
+
 </html>
