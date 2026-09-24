@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nova saída</title>
+</head>
+
+<body>
+
+    <h1>Nova saída</h1>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Salvar
+        </button>
+
+    </form>
+
+    <a href="{% url 'movimentacoes_list' %}">
+        Voltar para movimentações
+    </a>
+
+</body>
+
+</html>

@@ -12,4 +12,9 @@ urlpatterns = (
         views.movimentacoes_list,
         name="movimentacoes_list",
     ),
+    path( 
+        "movimentacoes/nova/", 
+        views.saida_form, 
+        name="saida_form", 
+        ),
 )

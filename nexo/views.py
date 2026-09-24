@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from nexo.models import Entrada, Saida
+from nexo.forms import SaidaForm
 
 
 def inicio(request):
@@ -50,4 +51,25 @@ def movimentacoes_list(request):
         "lista.html",
         contexto,
     )
-    
+
+def saida_form(request): 
+    if request.method == "POST": 
+        form = SaidaForm(request.POST) 
+
+        if form.is_valid(): 
+            form.save() 
+
+            return redirect("movimentacoes_list") 
+
+    else: 
+        form = SaidaForm() 
+
+    contexto = { 
+        "form": form,
+        } 
+
+    return render( 
+        request, 
+        "saida_form.html", 
+        contexto, 
+    )
