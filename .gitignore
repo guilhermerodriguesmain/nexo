@@ -21,6 +21,7 @@ staticfiles/
 .env
 .env.*
 !.env.example
+.env.ambiente/*
 
 # Ferramentas e sistema operacional
 .vscode/
