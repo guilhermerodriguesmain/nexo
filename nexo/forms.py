@@ -4,6 +4,11 @@ from nexo.models import Saida
 
 
 class SaidaForm(forms.ModelForm):
+     data_vencimento = forms.DateField(
+        required=False,
+        widget=forms.DateInput(attrs={"type": "date"})
+    )
+
 
     class Meta:
         model = Saida
