@@ -50,11 +50,16 @@ class MovimentacaoService:
         )
 
         if saida.num_parcelas > 1:
-            self._gerar_parcelas(
-                saida,
-                saida_model,
-                dados["data_vencimento"],
-            )
+            data_vencimento = dados.get("data_vencimento")
+
+        if data_vencimento is None:
+            raise ValueError( "A data de vencimento é obrigatória para saídas parceladas." )
+
+        self._gerar_parcelas(
+            saida,
+            saida_model,
+            data_vencimento,
+        )
 
         return saida_model
 
