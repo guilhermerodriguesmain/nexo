@@ -11,62 +11,22 @@ def inicio(request):
 
 
 def movimentacoes_list(request):
-    termo = request.GET.get("q", "")
-    categoria = request.GET.get("categoria", "")
+    service = MovimentacaoService()
 
-    entradas = Entrada.objects.all()
-    saidas = Saida.objects.all()
-
-    from django.db.models import Q
-
-    filtros = Q()
-
-    if termo:
-        filtros &= Q(descricao__icontains=termo)
-
-    if categoria:
-        filtros &= Q(categoria=categoria)
-
-    entradas = Entrada.objects.filter(filtros)
-    saidas = Saida.objects.filter(filtros)
-
-    movimentacoes = [
-        *entradas,
-        *saidas,
-    ]
-
-    movimentacoes.sort(
-        key=lambda movimentacao: movimentacao.data_registro,
-        reverse=True,
+    movimentacoes = service.listar_movimentacoes(
+        termo=request.GET.get("q", ""),
+        categoria=request.GET.get("categoria", ""),
     )
 
-    descricoes = set()
-
-    for entrada in Entrada.objects.all():
-        descricoes.add(entrada.descricao)
-
-    for saida in Saida.objects.all():
-        descricoes.add(saida.descricao)
-    
-    categorias = set()
-
-    for entrada in Entrada.objects.all():
-        categorias.add(entrada.categoria)
-
-    for saida in Saida.objects.all():
-        categorias.add(saida.categoria)
+    opcoes = service.obter_opcoes_filtro()
 
     contexto = {
         "movimentacoes": movimentacoes,
-        "descricoes": sorted(descricoes),
-        "categorias": sorted(categorias),
+        "descricoes": opcoes["descricoes"],
+        "categorias": opcoes["categorias"],
     }
 
-    return render(
-        request,
-        "lista.html",
-        contexto,
-    )
+    return render(request, "lista.html", contexto)
 
 def saida_form(request):
 
