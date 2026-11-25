@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from nexo.models import Entrada, Saida
 from nexo.forms import SaidaForm
 from nexo.services.movimentacoes import MovimentacaoService 
 from django.db.models import Q
