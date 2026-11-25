@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from nexo.models import Entrada, Saida
 from nexo.forms import SaidaForm
-from nexo.services.movimentacoes import MovimentacaoService
+from nexo.services.movimentacoes import MovimentacaoService 
 from django.db.models import Q
 
 
@@ -14,11 +14,11 @@ def movimentacoes_list(request):
     service = MovimentacaoService()
 
     movimentacoes = service.listar_movimentacoes(
-        termo=request.GET.get("q", ""),
+        termo_busca=request.GET.get("q", ""),
         categoria=request.GET.get("categoria", ""),
     )
 
-    opcoes = service.obter_opcoes_filtro()
+    opcoes = service.opcoes_filtro()
 
     contexto = {
         "movimentacoes": movimentacoes,
