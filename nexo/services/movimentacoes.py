@@ -58,6 +58,45 @@ class MovimentacaoService:
 
         return saida_model
 
+    def listar_movimentacoes(self, termo_busca=None, categoria=None):
+        movimentacoes = []
+
+        entradas = EntradaModel.objects.all()
+        saidas = SaidaModel.objects.all()
+
+        if termo_busca:
+            entradas = entradas.filter(descricao__icontains=termo_busca)
+            saidas = saidas.filter(descricao__icontains=termo_busca)
+
+        if categoria:
+            entradas = entradas.filter(categoria=categoria)
+            saidas = saidas.filter(categoria=categoria)
+
+        for entrada in entradas:
+            movimentacoes.append(entrada)
+
+        for saida in saidas:
+            movimentacoes.append(saida)
+
+        return movimentacoes
+    
+    def opcoes_filtro(self):
+        descricoes = set()
+        categorias = set()
+
+        for entrada in EntradaModel.objects.all():
+            descricoes.add(entrada.descricao)
+            categorias.add(entrada.categoria)
+
+        for saida in SaidaModel.objects.all():
+            descricoes.add(saida.descricao)
+            categorias.add(saida.categoria)
+
+        return {
+            "descricoes": sorted(descricoes),
+            "categorias": sorted(categorias),
+        }
+
     def _gerar_parcelas(
         self,
         saida,
