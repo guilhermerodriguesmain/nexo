@@ -84,8 +84,13 @@ class MovimentacaoService:
 
         for saida in saidas:
             movimentacoes.append(saida)
+        
+        
 
-        return movimentacoes
+        return movimentacoes.sort(
+            key=lambda movimentacao: movimentacao.data_registro,
+            reverse=True,
+        )
     
     def opcoes_filtro(self):
         descricoes = set()
