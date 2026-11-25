@@ -35,7 +35,7 @@ class MovimentacaoService:
             data_registro=dados["data_registro"],
             conta=dados["conta"],
             categoria=dados["categoria"],
-            num_parcelas=dados.get("num_parcelas", 1),
+            num_parcelas=dados["num_parcelas"],
             valor_parcela=dados.get("valor_parcela"),
         )
 
@@ -50,18 +50,11 @@ class MovimentacaoService:
         )
 
         if saida.num_parcelas > 1:
-            data_vencimento = dados.get("data_vencimento")
-
-            if data_vencimento is None:
-                raise ValueError( "Informe a data de vencimento das parcelas." )
-
             self._gerar_parcelas(
                 saida,
                 saida_model,
-                data_vencimento,
+                dados["data_vencimento"],
             )
-        else:
-            data_vencimento = saida.data_registro
 
         return saida_model
 
@@ -93,16 +86,19 @@ class MovimentacaoService:
         )
     
     def opcoes_filtro(self):
-        descricoes = set()
-        categorias = set()
+        descricoes = set(
+            EntradaModel.objects.values_list("descricao", flat=True)
+        )
+        descricoes.update(
+            SaidaModel.objects.values_list("descricao", flat=True)
+        )
 
-        for entrada in EntradaModel.objects.all():
-            descricoes.add(entrada.descricao)
-            categorias.add(entrada.categoria)
-
-        for saida in SaidaModel.objects.all():
-            descricoes.add(saida.descricao)
-            categorias.add(saida.categoria)
+        categorias = set(
+            EntradaModel.objects.values_list("categoria", flat=True)
+        )
+        categorias.update(
+            SaidaModel.objects.values_list("categoria", flat=True)
+        )
 
         return {
             "descricoes": sorted(descricoes),
