@@ -23,3 +23,18 @@ class SaidaForm(forms.ModelForm):
             )
 
         return valor
+
+    def clean(self):
+        dados = super().clean()
+
+        num_parcelas = dados.get("num_parcelas")
+        data_vencimento = dados.get("data_vencimento")
+
+        if num_parcelas and num_parcelas > 1 and not data_vencimento:
+            self.add_error(
+                "data_vencimento",
+                "Informe a data de vencimento das parcelas."
+            )
+
+        return dados
+        
