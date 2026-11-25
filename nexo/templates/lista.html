@@ -71,6 +71,12 @@
                 {{ movimentacao.categoria }}
                 —
                 {{ movimentacao.data_registro }}
+                _
+                {{ movimentacao.data_vencimento }}
+                _
+                {{ movimentacao.num_parcelas }}
+                _
+                {{movimentacao.valor_parcela}}
             </li>
         {% empty %}
             <li>
