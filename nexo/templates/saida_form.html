@@ -17,11 +17,23 @@
 
         {{ form.as_p }}
 
-        <button type="submit">
-            Salvar
-        </button>
+        <button type="submit"> Salvar </button>
 
     </form>
+
+    <script>
+    const parcelas = document.getElementById("id_num_parcelas");
+    const vencimento = document.getElementById("id_data_vencimento");
+    const campoVencimento = vencimento.parentElement;
+
+    function atualizarVencimento() {
+        campoVencimento.style.display =
+            Number(parcelas.value) > 1 ? "" : "none";
+    }
+
+    parcelas.addEventListener("change", atualizarVencimento);
+    atualizarVencimento();
+    </script>
 
     <a href="{% url 'movimentacoes_list' %}">
         Voltar para movimentações
