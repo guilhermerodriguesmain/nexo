@@ -10,7 +10,7 @@ class Acumulo(Orcamento):
         periodicidade,
         valor_meta
     ):
-        super()__init__(
+        super().__init__(
             data_registro,
             conta,
             categoria,

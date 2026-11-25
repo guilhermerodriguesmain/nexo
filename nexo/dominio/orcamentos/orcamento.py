@@ -10,7 +10,7 @@ class Orcamento(ABC):
         descricao,
         periodicidade
     ):
-        self.data_registro = data_registro
+            self.data_registro = data_registro
         self.conta = conta
         self.categoria = categoria
         self.descricao = descricao
