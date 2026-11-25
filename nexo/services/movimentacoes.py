@@ -80,10 +80,11 @@ class MovimentacaoService:
         
         
 
-        return movimentacoes.sort(
+        movimentacoes.sort(
             key=lambda movimentacao: movimentacao.data_registro,
             reverse=True,
         )
+        return movimentacoes
     
     def opcoes_filtro(self):
         descricoes = set(
